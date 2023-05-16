@@ -1,5 +1,5 @@
 # SpotiFetch
-An Arduino project that displays the currently playing spotify song and artist
+An Arduino project that displays the currently playing spotify song and artist on an LCD display.
 
 ![image](https://github.com/RazerAds/SpotiFetch/assets/77977360/7459734a-4076-4237-ac5e-6d8fa5a0297b)
 
