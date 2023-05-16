@@ -10,11 +10,23 @@ String data = " ";
 String song_name = "Initializing";
 String artist_name = "SpotiFetch";
 
+byte Sound[] = {
+  B00001,
+  B00011,
+  B00101,
+  B01001,
+  B01001,
+  B01011,
+  B11011,
+  B11000
+};
+
 void setup() {
 
   // Initiate the LCD and turn on the backlight
   lcd.init();          // Initiate the LCD module
   lcd.backlight();     // Turn on the backlight
+  lcd.createChar(0, Sound);
   Serial.begin(9600);
   Serial.setTimeout(0);
 }
@@ -52,13 +64,13 @@ void loop() {
     lcd.setCursor(2, 1);
     lcd.print(artist_name);  //prints artist name in the second line
     lcd.setCursor(0, 1);
-    lcd.print(">");
+    lcd.write((byte)0);
     lcd.setCursor(15, 0);   
     lcd.print("|");
-    lcd.setCursor(15, 0);
+    lcd.setCursor(15, 0);  
     delay(time2);
     lcd.print("/");
-    lcd.setCursor(15, 0);
+    lcd.setCursor(15,0);
     delay(time2);
     lcd.print("-");
     lcd.setCursor(15, 0);
@@ -68,6 +80,5 @@ void loop() {
     delay(time2);
     lcd.print("|");
     lcd.setCursor(15, 0);    // A small rotating animation, added for aesthetics
-    delay(time2);
   //}
 }
