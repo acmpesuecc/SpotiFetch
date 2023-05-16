@@ -1,7 +1,8 @@
 import serial,time
 from SwSpotify import spotify
 
-arduino_uno = serial.Serial('COM7', 9600)
+arduino_uno = serial.Serial('COM7', 9600)  #communicate on port COM7
+# Change this port to reflect where your Arduino is connected
 fetched_song = " "
 
 
@@ -15,28 +16,24 @@ print("  ╚══════╝╚═╝      ╚═════╝    ╚═�
 
 print("\n\n")
 
-
-
 def get_song():
 
-    # creating a variable to continuously update the current song that is playing. This variable is crucial for song detection.
-    current_song = spotify.song()
-    current_artist = spotify.artist()
+    current_song = spotify.song()   # Fetch Song
+    current_artist = spotify.artist()    # Fetch Artist
     global fetched_song
 
-    # creating a nested if-statement to send the arduino the song name if the previous song and the current song are different.
-    if current_song != fetched_song:
+    if current_song != fetched_song:   # Cleaning up terminal, only displays song and artist once
         print(current_song)
         print(current_artist)
         print("____________")
-    datastream = current_song+"%"+current_artist
-    # using the pySerial's 'write()' function to write the song name with encoding to the arduino through the COM7 port.
-    arduino_uno.write(datastream.encode())
+    datastream = current_song+"%"+current_artist # Combines Song and Artist into one string, to send it serially
+    # data will be decoded at the arduino end
 
-    # code to tie/update the old song to the current song.
+    arduino_uno.write(datastream.encode()) # using the pySerial's 'write()' function to write the song name with encoding to the arduino through the COM7 port.
+    #update sent every 5 seconds
+
     fetched_song = current_song
 
 while True:
-    # calling the function to get the song name from the SwSpotify module and send it to the Arudino for display.
-    get_song()
+    get_song() # Calls function
     time.sleep(5)
