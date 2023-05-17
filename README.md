@@ -1,7 +1,7 @@
 # SpotiFetch
 An Arduino project that displays the currently playing spotify song and artist on an LCD display.
 
-![image](https://github.com/RazerAds/SpotiFetch/assets/77977360/7459734a-4076-4237-ac5e-6d8fa5a0297b)
+![WhatsApp Image 2023-05-17 at 00 54 07](https://github.com/RazerAds/SpotiFetch/assets/77977360/c5de22b0-8635-47a5-9e2f-81460a3556ea)
 
 ## Components Required
 - Arduino Uno R3
@@ -13,7 +13,7 @@ An Arduino project that displays the currently playing spotify song and artist o
 To get started, download both the Arduino file (arduino_fetcher.ino) and the Python file (spotify_fetcher.py) for this project.
 
 
-<img src="https://github.com/RazerAds/SpotiFetch/assets/77977360/af6f9dc3-a305-42ba-9bd1-2cd0b23c18dd" width="500">
+<img src="spotifetch_schematic.png" width="500">
 
 Next, wire up your circuit according to the provided schematic. It is recommended to use a breadboard to securely connect the I2C module to the LCD display. This ensures a stable and reliable connection between the components.
 
