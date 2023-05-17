@@ -21,21 +21,34 @@ byte Sound[] = {
   B11000
 };
 
+byte Line[] = {
+  B00000,
+  B10000,
+  B01000,
+  B00100,
+  B00010,
+  B00001,
+  B00000,
+  B00000,
+};
+
+String old_song = "";
+
 void setup() {
 
   // Initiate the LCD and turn on the backlight
   lcd.init();          // Initiate the LCD module
   lcd.backlight();     // Turn on the backlight
   lcd.createChar(0, Sound);
+  lcd.createChar(1, Line);
   Serial.begin(9600);
   Serial.setTimeout(0);
 }
  
 void loop() {
-
+  
   data = Serial.readString();   //Reads data from port
   int time2 = 200;
-  
   for (int i = 0; i < data.length(); i++) //data is recieved as SongName%ArtistName. This loop splits it into 2 separate strings.
   {
     if (data.substring(i, i+1) == "%")
@@ -58,6 +71,8 @@ void loop() {
   }
   else
   {*/
+  if(old_song != song_name)
+  {
     lcd.clear();
     lcd.setCursor(0, 0);     
     lcd.print(song_name);  //prints song name in first line
@@ -65,20 +80,23 @@ void loop() {
     lcd.print(artist_name);  //prints artist name in the second line
     lcd.setCursor(0, 1);
     lcd.write((byte)0);
-    lcd.setCursor(15, 0);   
-    lcd.print("|");
-    lcd.setCursor(15, 0);  
-    delay(time2);
-    lcd.print("/");
-    lcd.setCursor(15,0);
-    delay(time2);
-    lcd.print("-");
-    lcd.setCursor(15, 0);
-    delay(time2);
-    lcd.print("\x0A ");
-    lcd.setCursor(15, 0);
-    delay(time2);
-    lcd.print("|");
-    lcd.setCursor(15, 0);    // A small rotating animation, added for aesthetics
+  }
+  old_song = song_name;
+  
+  lcd.setCursor(15, 0); 
+  lcd.print("|");
+  lcd.setCursor(15, 0);  
+  delay(time2);
+  lcd.print("/");
+  lcd.setCursor(15,0);
+  delay(time2);
+  lcd.print("-");
+  lcd.setCursor(15, 0);
+  delay(time2);
+  lcd.write((byte)1);
+  lcd.setCursor(15, 0);
+  delay(time2);
+  lcd.print("|");
+  lcd.setCursor(15, 0);  // A small rotating animation, added for aesthetics
   //}
 }
