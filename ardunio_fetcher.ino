@@ -32,6 +32,42 @@ byte Line[] = {
   B00000,
 };
 
+byte Full[] = {
+  B11111,
+  B10001,
+  B10001,
+  B10001,
+  B10001,
+  B10001,
+  B10001,
+  B11111,
+};
+
+byte Middle[] = {
+  B00000,
+  B01110,
+  B01010,
+  B01010,
+  B01010,
+  B01010,
+  B01110,
+  B00000,
+};
+
+byte Inner[] = {
+  B00000,
+  B00000,
+  B00100,
+  B00100,
+  B00100,
+  B00100,
+  B00000,
+  B00000,
+};
+
+int time2 = 200;
+int locx = 0;
+int locy = 1;
 String old_song = "";
 
 void setup() {
@@ -41,6 +77,9 @@ void setup() {
   lcd.backlight();     // Turn on the backlight
   lcd.createChar(0, Sound);
   lcd.createChar(1, Line);
+  lcd.createChar(2, Full);
+  lcd.createChar(3, Middle);
+  lcd.createChar(4, Inner);
   Serial.begin(9600);
   Serial.setTimeout(0);
 }
@@ -48,7 +87,7 @@ void setup() {
 void loop() {
   
   data = Serial.readString();   //Reads data from port
-  int time2 = 200;
+  
   for (int i = 0; i < data.length(); i++) //data is recieved as SongName%ArtistName. This loop splits it into 2 separate strings.
   {
     if (data.substring(i, i+1) == "%")
@@ -78,25 +117,43 @@ void loop() {
     lcd.print(song_name);  //prints song name in first line
     lcd.setCursor(2, 1);
     lcd.print(artist_name);  //prints artist name in the second line
-    lcd.setCursor(0, 1);
+    lcd.setCursor(15, 0);
     lcd.write((byte)0);
   }
   old_song = song_name;
+
   
-  lcd.setCursor(15, 0); 
+  lcd.setCursor(locx, locy); 
   lcd.print("|");
-  lcd.setCursor(15, 0);  
+  lcd.setCursor(locx, locy);  
   delay(time2);
   lcd.print("/");
-  lcd.setCursor(15,0);
+  lcd.setCursor(locx,locy);
   delay(time2);
   lcd.print("-");
-  lcd.setCursor(15, 0);
+  lcd.setCursor(locx, locy);
   delay(time2);
   lcd.write((byte)1);
-  lcd.setCursor(15, 0);
+  lcd.setCursor(locx, locy);
   delay(time2);
   lcd.print("|");
-  lcd.setCursor(15, 0);  // A small rotating animation, added for aesthetics
-  //}
+  lcd.setCursor(locx, locy); 
+  
+  // A small rotating animation, added for aesthetics
+
+  lcd.setCursor(locx, locy); 
+  lcd.write((byte)2);
+  delay(time2);
+  lcd.setCursor(locx, locy); 
+  lcd.write((byte)3);
+  delay(time2);
+  lcd.setCursor(locx, locy); 
+  lcd.write((byte)4);
+  delay(time2);
+  lcd.setCursor(locx, locy); 
+  lcd.write((byte)3);
+  delay(time2);
+  lcd.setCursor(locx, locy); 
+  lcd.write((byte)2);
+  
 }
