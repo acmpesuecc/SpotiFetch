@@ -12,7 +12,7 @@ An Arduino project that displays the currently playing spotify song and artist o
 - I2C Serial Interface Adapter Module (To connect to the LCD module)
 
 ## Instructions
-To get started, download both the Arduino file (arduino_fetcher.ino) and the Python file (spotify_fetcher.py) for this project.
+To get started, clone the repo into you computer.
 
 
 <img src="spotifetch_schematic.png" width="500">
