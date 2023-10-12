@@ -57,6 +57,10 @@ pyinstaller --onefile spotifetch.py
 The python script must keep running in the background to transmit information to the Arduino. Additionally, only run the executable after you have started playing a song, or this will throw an exception.
 
 ## Contributing
+
+### Maintainer
+Advaith Rajan Nair
+
 Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on the GitHub repository. If you would like to contribute code, feel free to fork the repository and submit a pull request.
 
 ## License
