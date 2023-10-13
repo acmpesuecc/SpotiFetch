@@ -38,6 +38,6 @@ def get_song():
 while True:
     try:
         get_song() # Calls function
-    except SpotifyPaused as e:
-        print("error");
+    except:
+        spotify.pause()
     time.sleep(2)
