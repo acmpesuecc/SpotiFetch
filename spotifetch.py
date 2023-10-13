@@ -1,7 +1,7 @@
 import serial,time
 from SwSpotify import spotify
 
-arduino_uno = serial.Serial('COM9', 9600)  #communicate on port COM7
+arduino_uno = serial.Serial('COM3', 9600)  #communicate on port COM7
 # Change this port to reflect where your Arduino is connected
 fetched_song = " "
 
