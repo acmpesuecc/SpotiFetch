@@ -112,11 +112,22 @@ void loop() {
   {*/
   if(old_song != song_name)
   {
+ 
+
     lcd.clear();
     lcd.setCursor(0, 0);     
-    lcd.print(song_name);  //prints song name in first line
+    lcd.print(song_name); 
     lcd.setCursor(2, 1);
-    lcd.print(artist_name);  //prints artist name in the second line
+    lcd.print(artist_name); 
+    for (int i =0; i<song_name.length(); i++){
+      delay(350);
+      lcd.scrollDisplayLeft();
+    } 
+    lcd.clear();
+    lcd.setCursor(0, 0);     
+    lcd.print(song_name); 
+    lcd.setCursor(2, 1);
+    lcd.print(artist_name); //prints artist name in the second line
     lcd.setCursor(15, 0);
     lcd.write((byte)0);
   }
